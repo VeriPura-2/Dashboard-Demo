@@ -87,7 +87,7 @@ header{
 
 /* Leaflet overrides for dark theme */
 .leaflet-container{background:#0a0f16 !important;}
-.leaflet-tile-pane{filter:brightness(0.75) saturate(0.6);}
+.leaflet-tile-pane{filter:brightness(0.88) saturate(0.7);}
 .leaflet-control-zoom a{background:var(--surface)!important;color:#c8c8b8!important;border-color:var(--border)!important;}
 .leaflet-control-attribution{background:rgba(10,15,22,0.7)!important;color:#4a5a6a!important;font-size:9px!important;}
 
@@ -240,9 +240,8 @@ td.td-mono{font-family:'DM Mono',monospace;font-size:0.65rem;}
 /* ── DRILLDOWN PANEL ── */
 .panel-overlay{
   position:fixed;top:0;left:0;right:0;bottom:0;
-  background:rgba(5,10,16,0.6);z-index:2000;
+  background:transparent;z-index:2000;
   opacity:0;pointer-events:none;transition:opacity 0.3s;
-  backdrop-filter:blur(3px);
 }
 .panel-overlay.open{opacity:1;pointer-events:all;}
 .drilldown{
@@ -475,6 +474,7 @@ body.light-mode .summary-strip { background:#b8c8d8; }
 
 /* Map */
 body.light-mode .leaflet-container { background:#e8eef5 !important; }
+body.light-mode .leaflet-tile-pane { filter:brightness(0.82) saturate(0.9) contrast(1.05); }
 body.light-mode .leaflet-control-zoom a { background:#ffffff!important;color:#1a2535!important;border-color:#ccd4de!important; }
 body.light-mode .leaflet-popup-content-wrapper { background:#ffffff!important;border-color:#ccd4de!important;color:#1a2535!important; }
 body.light-mode .leaflet-popup-tip { background:#ffffff!important; }
@@ -787,6 +787,22 @@ body.customer-mode .customer-board{display:block;}
 .customer-metric-value.amber{color:#e8c040;}
 .customer-metric-value.red{color:#e85555;}
 .customer-metric-value.green{color:#3dc882;}
+.customer-metric-value.teal{color:#38bdf8;}
+.customer-metric.eta-alert{background:rgba(56,189,248,0.10);border-color:rgba(56,189,248,0.45);}
+@keyframes metric-pulse-red{0%,100%{opacity:1;}40%{opacity:0.25;}}
+@keyframes metric-pulse-amber{0%,100%{opacity:1;}40%{opacity:0.3;}}
+@keyframes metric-pulse-teal{0%,100%{opacity:1;}40%{opacity:0.3;}}
+.customer-metric-value.pulse-red{animation:metric-pulse-red 0.55s ease-in-out 3;}
+.customer-metric-value.pulse-amber{animation:metric-pulse-amber 0.55s ease-in-out 3;}
+.customer-metric-value.pulse-teal{animation:metric-pulse-teal 0.55s ease-in-out 3;}
+.customer-metric-value.teal{color:#38bdf8;}
+.customer-metric.eta-alert{background:rgba(56,189,248,0.10);border-color:rgba(56,189,248,0.45);}
+@keyframes metric-pulse-red{0%,100%{opacity:1;}40%{opacity:0.25;}}
+@keyframes metric-pulse-amber{0%,100%{opacity:1;}40%{opacity:0.3;}}
+@keyframes metric-pulse-teal{0%,100%{opacity:1;}40%{opacity:0.3;}}
+.customer-metric-value.pulse-red{animation:metric-pulse-red 0.55s ease-in-out 3;}
+.customer-metric-value.pulse-amber{animation:metric-pulse-amber 0.55s ease-in-out 3;}
+.customer-metric-value.pulse-teal{animation:metric-pulse-teal 0.55s ease-in-out 3;}
 .customer-chip{
   display:inline-flex;align-items:center;gap:0.3rem;
   font-family:'DM Mono',monospace;font-size:0.58rem;padding:0.18rem 0.45rem;
@@ -825,6 +841,14 @@ body.light-mode .customer-metric-label{color:#4a5868;}
 body.light-mode .customer-board-title{color:#0d1520;font-weight:700;}
 body.light-mode .customer-metric{background:#f4f8fc;border-color:#ccd4de;}
 body.light-mode .customer-metric-value{color:#0d1520;}
+body.light-mode .customer-metric-value.amber{color:#a06b08;}
+body.light-mode .customer-metric-value.red{color:#b82020;}
+body.light-mode .customer-metric-value.teal{color:#0284c7;}
+body.light-mode .customer-metric.eta-alert{background:rgba(2,132,199,0.08);border-color:rgba(2,132,199,0.35);}
+body.light-mode .customer-metric-value.amber{color:#a06b08;}
+body.light-mode .customer-metric-value.red{color:#b82020;}
+body.light-mode .customer-metric-value.teal{color:#0284c7;}
+body.light-mode .customer-metric.eta-alert{background:rgba(2,132,199,0.08);border-color:rgba(2,132,199,0.35);}
 body.light-mode .customer-chip{background:#fff;color:#2a3848;border-color:#ccd4de;}
 body.light-mode .customer-chip.active{background:#fff4d9;color:#7a5a08;border-color:#c49a2a;}
 body.light-mode .action-btn-mini,
@@ -849,7 +873,7 @@ body.light-mode .doc-queue-status{color:#9a7518;}
 
 /* ── Guided tours + demo workflow modals ───────────────────── */
 .customer-board-actions{display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;}
-.workflow-overlay{position:fixed;inset:0;background:rgba(4,8,14,0.42);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:1400;}
+.workflow-overlay{position:fixed;inset:0;background:transparent;opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:1400;}
 .workflow-overlay.open{opacity:1;pointer-events:auto;}
 .workflow-modal{position:fixed;top:calc(var(--header-h) + 28px);left:50%;transform:translate(-50%,-12px);width:min(720px,calc(100vw - 2rem));max-height:calc(100vh - var(--header-h) - 56px);overflow:auto;background:#0c1520;border:1px solid rgba(122,154,184,0.28);border-radius:16px;box-shadow:0 26px 60px rgba(0,0,0,0.4);padding:1.1rem 1.1rem 1rem;opacity:0;pointer-events:none;transition:transform .22s ease,opacity .22s ease;z-index:1401;}
 .workflow-modal.open{transform:translate(-50%,0);opacity:1;pointer-events:auto;}
@@ -880,9 +904,9 @@ body.light-mode .doc-queue-status{color:#9a7518;}
 .action-btn-main:hover{background:rgba(196,154,42,0.24);}
 .workflow-status-banner{margin-top:0.95rem;padding:0.82rem 0.92rem;border-radius:12px;border:1px solid rgba(61,200,130,0.32);background:rgba(61,200,130,0.08);color:#d7ede0;font-size:0.84rem;line-height:1.55;display:none;}
 .workflow-status-banner.show{display:block;}
-.tour-backdrop{position:fixed;inset:0;background:rgba(2,6,12,0.18);opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:3000;}
+.tour-backdrop{position:fixed;inset:0;background:transparent;opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:3000;}
 .tour-backdrop.open{opacity:1;pointer-events:auto;}
-.tour-spotlight{position:fixed;border-radius:16px;border:2px solid rgba(196,154,42,0.82);box-shadow:0 0 0 9999px rgba(2,6,12,0.12),0 0 0 1px rgba(255,255,255,0.06) inset,0 18px 38px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:all .18s ease;z-index:3001;}
+.tour-spotlight{position:fixed;border-radius:16px;border:2px solid rgba(196,154,42,0.82);box-shadow:0 0 0 1px rgba(255,255,255,0.06) inset,0 18px 38px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:all .18s ease;z-index:3001;}
 .tour-spotlight.open{opacity:1;}
 .tour-card{position:fixed;width:min(380px,calc(100vw - 1.5rem));max-height:min(78vh,680px);overflow:auto;background:#0d1621;border:1px solid rgba(122,154,184,0.26);border-radius:18px;box-shadow:0 24px 56px rgba(0,0,0,0.30);padding:1rem 1rem 0.9rem;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s ease,transform .18s ease;z-index:3002;}
 .tour-card.open{opacity:1;pointer-events:auto;transform:translateY(0);}
@@ -895,11 +919,11 @@ body.light-mode .doc-queue-status{color:#9a7518;}
 .tour-controls{display:flex;align-items:center;justify-content:space-between;gap:0.65rem;margin-top:0.9rem;}
 .tour-step-count{font-family:'DM Mono',monospace;font-size:0.62rem;color:#9fb2c5;letter-spacing:0.05em;text-transform:uppercase;}
 .tour-btn-row{display:flex;gap:0.45rem;}
-.tour-btn{font-family:'DM Mono',monospace;font-size:0.64rem;letter-spacing:0.05em;text-transform:uppercase;border-radius:8px;padding:0.58rem 0.78rem;border:1px solid rgba(122,154,184,0.28);background:#172433;color:#d6deda;cursor:pointer;}
-.tour-btn.primary{border-color:rgba(196,154,42,0.55);background:rgba(196,154,42,0.16);color:#f4e8bf;}
+.tour-btn{font-family:'DM Mono',monospace;font-size:0.64rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;border-radius:8px;padding:0.58rem 0.78rem;border:1px solid rgba(122,154,184,0.28);background:#172433;color:#d6deda;cursor:pointer;}
+.tour-btn.primary{border-color:rgba(196,154,42,0.55);background:rgba(196,154,42,0.16);color:#f4e8bf;font-weight:700;}
 .tour-btn:disabled{opacity:.45;cursor:not-allowed;}
 body.tour-active{overflow:hidden;}
-body.tour-active .customer-detail-overlay.open,body.tour-active #panel-overlay.open,body.tour-active #settings-overlay.open,body.tour-active #onboarding-overlay.open,body.tour-active #po-overlay.open{background:rgba(3,8,14,0.06)!important;backdrop-filter:none!important;}
+
 @media (max-width:860px){.workflow-grid{grid-template-columns:1fr;}.workflow-modal{top:calc(var(--header-h) + 14px);width:min(94vw,720px);}.customer-board-actions{width:100%;}.tour-card{width:min(92vw,380px);max-height:72vh;}}
 @media (prefers-reduced-motion: reduce){.workflow-overlay,.workflow-modal,.tour-backdrop,.tour-spotlight,.tour-card,.customer-card,.drilldown,.customer-detail-panel,.settings-panel{transition:none!important;}}
 body.light-mode .workflow-modal,body.light-mode .tour-card{background:#ffffff;border-color:#ccd4de;}
@@ -945,7 +969,7 @@ body.light-mode .tour-btn.primary{background:#fff4d9;border-color:#c49a2a;color:
 
 <!-- ── SUMMARY STRIP ── -->
 <div class="summary-strip">
-  <div class="sum-card active" id="sum-all-card" data-sum="all" onclick="sumCardClick('all')"><div class="sum-label">Active Shipments</div><div class="sum-value" id="s-total">0</div><div class="sum-sub">across 8 customers</div></div>
+  <div class="sum-card active" id="sum-all-card" data-sum="all" onclick="sumCardClick('all')"><div class="sum-label">Active Shipments</div><div class="sum-value" id="s-total">0</div><div class="sum-sub">across 11 customers</div></div>
   <div class="sum-card" id="sum-green-card" data-sum="green" onclick="sumCardClick('green')"><div class="sum-label">On Track</div><div class="sum-value green" id="s-green">0</div><div class="sum-sub">all stages clear</div></div>
   <div class="sum-card" id="sum-amber-card" data-sum="amber" onclick="sumCardClick('amber')"><div class="sum-label">Attention Required</div><div class="sum-value amber" id="s-amber">0</div><div class="sum-sub">action pending</div></div>
   <div class="sum-card" id="sum-red-card" data-sum="red" onclick="sumCardClick('red')"><div class="sum-label">Critical / Held</div><div class="sum-value red" id="s-red">0</div><div class="sum-sub">intervention needed</div></div>
@@ -1026,7 +1050,7 @@ body.light-mode .tour-btn.primary{background:#fff4d9;border-color:#c49a2a;color:
     <button class="dd-close" onclick="closeSettings()">✕</button>
     <div class="dd-id">ACCOUNT</div>
     <div class="dd-title">GlobalFreight Holdings Ltd</div>
-    <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--mid);margin-top:0.3rem;">controltower@globalfreight-demo.com · Tier: Enterprise</div>
+    <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--mid);margin-top:0.3rem;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddbeb2b3a9afb2b1a9b2aab8af9dbab1b2bfbcb1bbafb8b4bab5a9f0b9b8b0b2f3beb2b0">[email&#160;protected]</a> · Tier: Enterprise</div>
   </div>
 
   <!-- VERI Token wallet -->
@@ -1111,10 +1135,10 @@ body.light-mode .tour-btn.primary{background:#fff4d9;border-color:#c49a2a;color:
   <div class="sw-section">
     <div class="sw-section-title">Key Customer Contacts</div>
     <div class="sw-settings-list">
-      <div class="sw-setting-row"><span>NorthStar Foods UK</span><span class="sw-setting-val">imports@northstar-demo.com</span></div>
-      <div class="sw-setting-row"><span>Harbor Retail Group</span><span class="sw-setting-val">qa@harborretail-demo.com</span></div>
-      <div class="sw-setting-row"><span>BlueShelf Imports</span><span class="sw-setting-val">docs@blueshelf-demo.com</span></div>
-      <div class="sw-setting-row"><span>Continental Fresh Trading</span><span class="sw-setting-val">compliance@continentalfresh-demo.com</span></div>
+      <div class="sw-setting-row"><span>NorthStar Foods UK</span><span class="sw-setting-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d04001d021f191e2d03021f19051e190c1f4009080002430e0200">[email&#160;protected]</a></span></div>
+      <div class="sw-setting-row"><span>Harbor Retail Group</span><span class="sw-setting-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abdacaebc3cad9c9c4d9d9cedfcac2c786cfcec6c485c8c4c6">[email&#160;protected]</a></span></div>
+      <div class="sw-setting-row"><span>BlueShelf Imports</span><span class="sw-setting-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbafa4a8b88ba9a7beaeb8a3aea7ade6afaea6a4e5a8a4a6">[email&#160;protected]</a></span></div>
+      <div class="sw-setting-row"><span>Continental Fresh Trading</span><span class="sw-setting-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b2824263b27222a25282e0b2824253f22252e253f2a272d392e3823662f2e262465282426">[email&#160;protected]</a></span></div>
     </div>
   </div>
 
@@ -1187,18 +1211,18 @@ body.light-mode .tour-btn.primary{background:#fff4d9;border-color:#c49a2a;color:
     </div>
     <button class="workflow-close" onclick="closePoModal()">✕</button>
   </div>
-  <div class="workflow-grid">
+  <div class="workflow-doc-preview" id="po-doc-preview">
+    <div class="workflow-doc-preview-title">Required documents triggered by this PO</div>
+    <div class="workflow-doc-preview-list" id="po-doc-list"></div>
+  </div>
+  <div class="workflow-grid" style="margin-top:1rem;">
     <div class="workflow-field"><label for="po-customer">Importer</label><select id="po-customer"></select></div>
     <div class="workflow-field"><label for="po-origin">Origin</label><select id="po-origin"><option value="brazil">Brazil</option><option value="india">India</option><option value="indonesia">Indonesia</option><option value="thailand">Thailand</option><option value="argentina">Argentina</option><option value="southafrica">South Africa</option><option value="morocco">Morocco</option></select></div>
     <div class="workflow-field"><label for="po-commodity">Commodity</label><input id="po-commodity" value="Chilled beef primals"></div>
     <div class="workflow-field"><label for="po-weight">Weight</label><input id="po-weight" value="24,000 kg"></div>
     <div class="workflow-field"><label for="po-vessel">Vessel / voyage</label><input id="po-vessel" value="MV Horizon Vale · VX119"></div>
     <div class="workflow-field"><label for="po-eta">ETA</label><input id="po-eta" value="16 Apr 2026"></div>
-    <div class="workflow-field full"><label for="po-notes">PO notes</label><textarea id="po-notes">First shipment under new importer profile. Commercial invoice, packing list, export health certificate, and cold-chain evidence required before release.</textarea></div>
-  </div>
-  <div class="workflow-doc-preview" id="po-doc-preview">
-    <div class="workflow-doc-preview-title">Required documents triggered by this PO</div>
-    <div class="workflow-doc-preview-list" id="po-doc-list"></div>
+    <div class="workflow-field full"><label for="po-notes">PO notes</label><textarea id="po-notes" style="min-height:64px;">First shipment under new importer profile. Commercial invoice, packing list, export health certificate, and cold-chain evidence required before release.</textarea></div>
   </div>
   <div class="workflow-status-banner" id="po-status">Shipment created. The document checklist is now open for review.</div>
   <div class="workflow-actions">
@@ -1224,31 +1248,34 @@ body.light-mode .tour-btn.primary{background:#fff4d9;border-color:#c49a2a;color:
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ══════════════════════════════════════════════════════
 // DATA — 38 shipments across 8 customers
 // ══════════════════════════════════════════════════════
 
 const ORIGINS = {
   brazil:      { label:"Brazil",       port:"Santos",        lat:-23.9,  lng:-46.3,  dest:[51.44,-0.37], color:"#c49a2a" },
-  india:       { label:"India",        port:"Nhava Sheva",   lat:18.95,  lng:72.95,  dest:[53.48,-2.24], color:"#e87020" },
-  indonesia:   { label:"Indonesia",    port:"Tanjung Priok", lat:-6.1,   lng:106.88, dest:[51.44,-0.37], color:"#8a4ab8" },
+  india:       { label:"India",        port:"Nhava Sheva",   lat:18.95,  lng:72.95,  dest:[33.74,-118.27], color:"#e87020" },
+  indonesia:   { label:"Indonesia",    port:"Tanjung Priok", lat:-6.1,   lng:106.88, dest:[33.74,-118.27], color:"#8a4ab8" },
   thailand:    { label:"Thailand",     port:"Laem Chabang",  lat:13.08,  lng:100.9,  dest:[51.44,-0.37], color:"#2080c0" },
-  argentina:   { label:"Argentina",    port:"Buenos Aires",  lat:-34.6,  lng:-58.4,  dest:[51.44,-0.37], color:"#c03060" },
+  argentina:   { label:"Argentina",    port:"Buenos Aires",  lat:-34.6,  lng:-58.4,  dest:[40.67,-74.17], color:"#c03060" },
   southafrica: { label:"South Africa", port:"Durban",        lat:-29.85, lng:31.05,  dest:[51.44,-0.37], color:"#20a060" },
   morocco:     { label:"Morocco",      port:"Casablanca",    lat:33.6,   lng:-7.6,   dest:[51.44,-0.37], color:"#d04020" },
 };
 
 
 const CUSTOMERS = [
-  { id:'northstar', name:'NorthStar Foods UK', region:'United Kingdom', destination:[51.51,-0.12], port:'Tilbury', focus:'Frozen proteins' },
-  { id:'harbor', name:'Harbor Retail Group', region:'United Kingdom', destination:[53.40,-3.00], port:'Liverpool', focus:'Retail grocery' },
-  { id:'blueshelf', name:'BlueShelf Imports', region:'Netherlands', destination:[51.92,4.48], port:'Rotterdam', focus:'Seafood & ambient' },
-  { id:'continental', name:'Continental Fresh Trading', region:'Germany', destination:[53.55,9.99], port:'Hamburg', focus:'Fresh produce' },
-  { id:'primeport', name:'PrimePort Foods', region:'Belgium', destination:[51.22,4.40], port:'Antwerp', focus:'Chilled foods' },
-  { id:'sterling', name:'Sterling Mercantile', region:'France', destination:[49.49,0.10], port:'Le Havre', focus:'Foodservice imports' },
-  { id:'aurora', name:'Aurora Specialty Foods', region:'Spain', destination:[41.35,2.16], port:'Barcelona', focus:'Specialty grocery' },
-  { id:'meridian', name:'Meridian Protein Buyers', region:'Italy', destination:[44.40,8.93], port:'Genoa', focus:'Protein distribution' }
+  { id:'northstar',   name:'NorthStar Foods UK',         region:'United Kingdom', destination:[51.51,-0.12],   port:'Tilbury',           focus:'Frozen proteins' },
+  { id:'harbor',      name:'Harbor Retail Group',         region:'United Kingdom', destination:[53.40,-3.00],   port:'Liverpool',         focus:'Retail grocery' },
+  { id:'blueshelf',   name:'BlueShelf Imports',           region:'Netherlands',    destination:[51.92,4.48],    port:'Rotterdam',         focus:'Seafood & ambient' },
+  { id:'continental', name:'Continental Fresh Trading',   region:'Germany',        destination:[53.55,9.99],    port:'Hamburg',           focus:'Fresh produce' },
+  { id:'primeport',   name:'PrimePort Foods',             region:'Belgium',        destination:[51.22,4.40],    port:'Antwerp-Bruges',    focus:'Chilled foods' },
+  { id:'sterling',    name:'Sterling Mercantile',         region:'France',         destination:[49.49,0.10],    port:'Le Havre',          focus:'Foodservice imports' },
+  { id:'aurora',      name:'Aurora Specialty Foods',      region:'Spain',          destination:[41.35,2.16],    port:'Barcelona',         focus:'Specialty grocery' },
+  { id:'meridian',    name:'Meridian Protein Buyers',     region:'USA — East',     destination:[40.67,-74.17],  port:'New York / NJ',     focus:'Protein distribution' },
+  { id:'atlantic',    name:'Atlantic Fresh Distributors', region:'USA — East',     destination:[32.08,-81.09],  port:'Savannah GA',       focus:'Poultry & beef' },
+  { id:'pacificrim',  name:'Pacific Rim Imports',         region:'USA — West',     destination:[33.74,-118.27], port:'Los Angeles / LB',  focus:'Asian ambient & frozen' },
+  { id:'northwest',   name:'Northwest Pacific Foods',     region:'USA — West',     destination:[47.60,-122.33], port:'Seattle / Tacoma',  focus:'Indian & SE Asian foods' },
 ];
 
 const COMMODITIES = {
@@ -1396,10 +1423,13 @@ const CUSTOMER_PROFILES = {
   harbor:{products:'Retail grocery mixed loads, frozen proteins, packaged foods',frequency:'2–3 shipments per week',origins:'Brazil, India, Spain, Netherlands',cold:'Mixed ambient and frozen',sla:'Enterprise retail intake workflow',contacts:[['Sophie Turner','Import Documentation Lead','s.turner@harbor-retail.example'],['Mark Evans','Retail Distribution Planner','m.evans@harbor-retail.example']],notes:'High-volume retail account with frequent purchase-order driven onboarding and substitutions.'},
   blueshelf:{products:'Seafood, frozen tuna, ambient shelf-stable foods',frequency:'Weekly seafood and ambient imports',origins:'Indonesia, Vietnam, India, Brazil',cold:'Mixed frozen and ambient',sla:'Priority compliance routing',contacts:[['Pieter Vos','Import Compliance Manager','pieter.vos@blueshelf.example'],['Anika Smit','Supply Operations','anika.smit@blueshelf.example']],notes:'Netherlands importer focused on Rotterdam intake and reefer/ambient split workflows.'},
   continental:{products:'Fresh produce, specialty dry ingredients',frequency:'3–4 shipments per month',origins:'Morocco, Spain, India, Peru',cold:'Yes — chilled produce handling',sla:'Fresh-produce document hold monitoring',contacts:[['Lena Hofmann','Fresh Trade Compliance','l.hofmann@continental-fresh.example'],['Tobias Kern','Port Operations','t.kern@continental-fresh.example']],notes:'Hamburg-based importer with tight shelf-life and cold-chain controls.'},
-  primeport:{products:'Chilled foods, proteins, prepared foods',frequency:'Weekly port-in programs',origins:'Brazil, Netherlands, France',cold:'Yes — chilled and frozen',sla:'Priority reefer escalation',contacts:[['Claire Dubois','Import Operations','c.dubois@primeport.example'],['Niels De Smet','Port Planner','n.desmet@primeport.example']],notes:'Antwerp importer with strong customs and cold-store coordination requirements.'},
+  primeport:{products:'Chilled foods, proteins, prepared foods',frequency:'Weekly port-in programs',origins:'Brazil, Netherlands, France',cold:'Yes — chilled and frozen',sla:'Priority reefer escalation',contacts:[['Claire Dubois','Import Operations','c.dubois@primeport.example'],['Niels De Smet','Port Planner','n.desmet@primeport.example']],notes:'Antwerp-Bruges importer — second-largest EU port by TEU. Strong customs and cold-store coordination requirements.'},
   sterling:{products:'Foodservice imports, frozen shrimp, meat cuts',frequency:'Weekly foodservice lanes',origins:'India, Brazil, Indonesia',cold:'Mostly frozen',sla:'Foodservice service desk',contacts:[['Camille Bernard','Foodservice Compliance','c.bernard@sterling-mercantile.example'],['Owen Price','Inbound Logistics','o.price@sterling-mercantile.example']],notes:'Le Havre account with frequent pre-order and customs-stage interventions.'},
   aurora:{products:'Specialty grocery, dry goods, chilled add-ons',frequency:'2 shipments per month',origins:'Spain, Italy, India',cold:'Selective chilled handling',sla:'Standard plus VeriPura review',contacts:[['Lucia Serrano','Specialty Imports','lucia.serrano@aurora-specialty.example'],['Daniel Costa','Buyer Operations','daniel.costa@aurora-specialty.example']],notes:'Smaller specialty importer using VeriPura for supplier onboarding and document review.'},
-  meridian:{products:'Protein distribution, beef and seafood',frequency:'Weekly protein replenishment',origins:'Brazil, India, Indonesia',cold:'Yes — frozen protein distribution',sla:'Protein channel monitoring',contacts:[['Alessio Riva','Protein Compliance Lead','a.riva@meridian-protein.example'],['Chiara Bellini','Inbound Scheduling','c.bellini@meridian-protein.example']],notes:'Italy-based protein distributor requiring quick issue visibility for held consignments.'}
+  meridian:{products:'Frozen beef primals, frozen beef trimmings, soya protein concentrate',frequency:'Weekly protein replenishment via South Atlantic corridor',origins:'Brazil, Argentina',cold:'Yes — frozen protein, reefer vessel programs',sla:'US East Coast protein channel monitoring',contacts:[['Ryan Kowalski','US Import Compliance Lead','r.kowalski@meridian-protein.example'],['Dana Ferreira','Inbound Scheduling','d.ferreira@meridian-protein.example']],notes:'New York/NJ importer. Primary corridor Brazil and Argentina to Port Newark Container Terminal. USDA FSIS documentation and FDA prior-notice required on all shipments.'},
+  atlantic:{products:'Frozen chicken portions, frozen beef trimmings, chilled lemons',frequency:'2–3 shipments per month via Brazil and Argentina',origins:'Brazil, Argentina',cold:'Yes — frozen and chilled reefer programs',sla:'Southeast US distribution priority escalation',contacts:[['Marcus Webb','Import Compliance','m.webb@atlanticfresh.example'],['Priya Nair','Logistics Coordination','p.nair@atlanticfresh.example']],notes:'Savannah GA — fastest-growing East Coast port. Garden City Terminal intake. USDA/FDA dual documentation lane for poultry and beef.'},
+  pacificrim:{products:'Palm oil refined, frozen tuna loins, frozen vannamei shrimp, jasmine rice, frozen cooked shrimp',frequency:'Weekly West Coast arrivals via trans-Pacific lanes',origins:'Indonesia, Thailand',cold:'Mixed — frozen seafood and ambient dry goods',sla:'West Coast trans-Pacific compliance routing',contacts:[['Michelle Tran','Import Documentation','m.tran@pacificrim-imports.example'],['Kevin Lim','Port Operations','k.lim@pacificrim-imports.example']],notes:'Los Angeles / Long Beach importer. Primary trans-Pacific lanes from Indonesia (Tanjung Priok) and Thailand (Laem Chabang). FDA OASIS prior-notice and USDC seafood inspection.'},
+  northwest:{products:'Basmati rice, frozen shrimp, spice mix, coconut cream, dried nutmeg and mace',frequency:'2–3 shipments per month via trans-Pacific',origins:'India, Indonesia',cold:'Mixed — frozen shrimp and ambient dry goods',sla:'Pacific Northwest specialty foods compliance',contacts:[['Sarah Kim','Import Compliance','s.kim@nwpacificfoods.example'],['Rajiv Mehta','Supply Chain','r.mehta@nwpacificfoods.example']],notes:'Seattle/Tacoma importer. India (Nhava Sheva) and Indonesia (Tanjung Priok) lanes. FDA prior-notice, USDC seafood documentation, and USDA organic certification review where applicable.'}
 };
 
 function getScopedShipsForCustomer(customerId){
@@ -1611,7 +1641,7 @@ function updateSummary() {
   document.getElementById('s-vp').textContent    = visible.reduce((a,s)=>a+s.twinEvents,0);
   document.getElementById('s-tw').textContent    = visible.reduce((a,s)=>a+s.twinEvents+1,0);
   document.querySelector('.summary-strip .sum-card.active .sum-sub');
-  document.querySelectorAll('.summary-strip .sum-card')[0].querySelector('.sum-sub').textContent = selectedCustomer ? `for ${titleSuffix}` : 'across 8 customers';
+  document.querySelectorAll('.summary-strip .sum-card')[0].querySelector('.sum-sub').textContent = selectedCustomer ? `for ${titleSuffix}` : 'across 11 customers';
   document.querySelectorAll('.summary-strip .sum-card')[4].querySelector('.sum-sub').textContent = selectedCustomer ? 'needing importer review' : 'last 24 hours';
 }
 
@@ -1653,12 +1683,18 @@ function renderCustomerCards() {
       <div class="customer-card-meta">${c.region} · ${c.port} · ${c.focus}</div>
       <div class="customer-card-grid">
         <div class="customer-metric"><div class="customer-metric-label">Active</div><div class="customer-metric-value">${m.total}</div></div>
-        <div class="customer-metric"><div class="customer-metric-label">Need action</div><div class="customer-metric-value amber">${m.action}</div></div>
-        <div class="customer-metric"><div class="customer-metric-label">Critical</div><div class="customer-metric-value red">${m.red}</div></div>
-        <div class="customer-metric"><div class="customer-metric-label">ETA 7d</div><div class="customer-metric-value green">${m.eta}</div></div>
+        <div class="customer-metric"><div class="customer-metric-label">Need action</div><div class="customer-metric-value${m.action>0?' amber':''}" data-pulse="${m.action>0?'amber':''}">${m.action}</div></div>
+        <div class="customer-metric"><div class="customer-metric-label">Critical</div><div class="customer-metric-value${m.red>0?' red':''}" data-pulse="${m.red>0?'red':''}">${m.red}</div></div>
+        <div class="customer-metric${m.eta>0?' eta-alert':''}"><div class="customer-metric-label">ETA 7d</div><div class="customer-metric-value${m.eta>0?' teal':''}" data-pulse="${m.eta>0?'teal':''}">${m.eta}</div></div>
       </div>
     </div>`;
   }).join('');
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('#customer-cards [data-pulse]').forEach(el=>{
+      const t=el.getAttribute('data-pulse'); if(!t) return;
+      el.classList.remove('pulse-'+t); void el.offsetWidth; el.classList.add('pulse-'+t);
+    });
+  });
 }
 
 function syncCustomerUi() {
@@ -1775,17 +1811,30 @@ function switchTab(tab, el) {
 function renderDrillTab(ship, tab) {
   const body = document.getElementById('dd-body');
   if (tab==='timeline') {
-    const docs = ship.rag==='green' ? [] : (ship.requiredDocs || []).map((doc, idx)=>({
-      doc:doc.name,
-      issue: idx===0 ? (ship.alert || doc.note || 'Document discrepancy flagged by VeriPura') : (doc.note || 'Importer-side review required'),
-      status: ship.rag==='red' && idx===0 ? 'Critical hold' : (doc.state || (idx===0 ? 'Awaiting importer review' : 'Pending'))
+    const allDocs = (ship.requiredDocs && ship.requiredDocs.length > 0)
+      ? ship.requiredDocs
+      : getPoRequirements(ship.origin, ship.commodity);
+    const docs = allDocs.map((doc, idx)=>({
+      doc: doc.name,
+      issue: ship.rag==='green'
+        ? (doc.note || 'Document received and validated by VeriPura.')
+        : (idx===0 ? (ship.alert || doc.note || 'Document discrepancy flagged by VeriPura') : (doc.note || 'Importer-side review required')),
+      status: ship.rag==='green'
+        ? '✓ Validated'
+        : (ship.rag==='red' && idx===0 ? 'Critical hold' : (doc.state || (idx===0 ? 'Awaiting importer review' : 'Pending'))),
+      isOk: ship.rag==='green' || (ship.rag==='amber' && idx > 1)
     }));
-    const actionPanel = ship.rag==='green' ? '' : `<div class="doc-queue" id="required-docs-queue">
-      <div class="doc-queue-title">Importer action dashboard</div>
+    const queueTitle = ship.rag==='green'
+      ? 'Document checklist — all items validated'
+      : ship.rag==='red'
+      ? 'Importer action dashboard — critical hold'
+      : 'Importer action dashboard — action required';
+    const actionPanel = `<div class="doc-queue" id="required-docs-queue">
+      <div class="doc-queue-title">${queueTitle}</div>
       <div class="doc-queue-grid">
-        ${docs.map(d => `<div class="doc-queue-item"><div><div class="doc-queue-doc">${d.doc}</div><div class="doc-queue-issue">${d.issue}</div></div><div class="doc-queue-status">${d.status}</div><div class="action-stack"><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','view')">View issue</button><button class="dd-action-btn" id="doc-upload-replacement" onclick="triggerCustomerAction('${ship.id}','upload')">Upload replacement</button><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','approve')">Approve / acknowledge</button><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','escalate')">Escalate</button></div></div>`).join('')}
+        ${docs.map(d => `<div class="doc-queue-item"><div><div class="doc-queue-doc">${d.doc}</div><div class="doc-queue-issue" style="color:${d.isOk?'var(--mid)':'inherit'}">${d.issue}</div></div><div class="doc-queue-status" style="color:${d.isOk?'#3dc882':'inherit'}">${d.status}</div>${d.isOk ? '' : `<div class="action-stack"><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','view')">View issue</button><button class="dd-action-btn" id="doc-upload-replacement" onclick="triggerCustomerAction('${ship.id}','upload')">Upload replacement</button><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','approve')">Approve / acknowledge</button><button class="dd-action-btn" onclick="triggerCustomerAction('${ship.id}','escalate')">Escalate</button></div>`}</div>`).join('')}
       </div>
-      <div class="customer-actions-note">${ship.corridor ? `${ship.corridor} · ` : ''}${ship.temperatureProgram || ''}${ship.importerContact ? ` · Importer contact: ${ship.importerContact}` : ''}</div><div class="customer-actions-note">GlobalFreight can monitor the hold, but the importer dashboard is where document replacement, acknowledgement, and escalation decisions are taken.</div>
+      <div class="customer-actions-note">${ship.corridor ? `${ship.corridor} · ` : ''}${ship.temperatureProgram || ''}${ship.importerContact ? ` · Importer contact: ${ship.importerContact}` : ''}</div>
     </div>`;
     const events = generateTimeline(ship);
     body.innerHTML = `${actionPanel}<div class="timeline">${events.map(e=>`
@@ -1985,19 +2034,131 @@ function saveOnboardingDemo(){
 }
 
 function getPoRequirements(origin, commodity){
-  const cold = /chilled|frozen|beef|poultry|seafood|protein/i.test(commodity || '');
-  const originLabel = ORIGINS[origin]?.label || 'Origin';
-  const commodityLabel = commodity || 'Food cargo';
+  const cold    = /chilled|frozen|beef|poultry|seafood|protein|shrimp|tuna|hake|squid|octopus/i.test(commodity||'');
+  const meat    = /beef|poultry|chicken|pork|lamb|veal|trimmings|primals/i.test(commodity||'');
+  const seafood = /shrimp|tuna|hake|tilapia|squid|octopus|pilchard|sardine|fish/i.test(commodity||'');
+  const produce = /citrus|lemon|tomato|ginger|mango|fruit/i.test(commodity||'');
+  const organic = /organic|rooibos|argan/i.test(commodity||'');
+  const usa     = /USA|East|West|Savannah|New York|Los Angeles|Seattle/i.test((ORIGINS[origin]||{}).label||'');
+  const originLabel    = ORIGINS[origin]?.label || 'Origin';
+  const commodityLabel = (commodity||'Food cargo').toLowerCase();
+
   const docs = [
-    {name:'Commercial Invoice', note:`Importer acknowledgement required for ${originLabel} consignment of ${commodityLabel.toLowerCase()}.`, state:'Pending importer acknowledgement'},
-    {name:'Packing List / Lot Trace', note:'Lot references must align with inbound booking, pallet labels, and PO line items.', state:'Cross-check required'},
-    {name:'Export Health Certificate', note: cold ? 'Veterinary certificate and temperature evidence required before release.' : 'Health certificate required for clearance.', state:'Awaiting supplier upload'}
+    // ── Core commercial docs — every shipment ──
+    {name:'Commercial Invoice',
+     note:`Importer-reviewed invoice for ${originLabel} consignment of ${commodityLabel}. Buyer acknowledgement and price confirmation required before customs entry.`,
+     state:'Pending importer acknowledgement'},
+    {name:'Packing List / Lot Trace',
+     note:'Lot numbers, pallet IDs, and carton counts must align with inbound booking, bill of lading, and PO line items. VeriPura cross-checks automatically.',
+     state:'Cross-check required'},
+    {name:'Bill of Lading (OBL)',
+     note:'Original bill of lading or express release required. Vessel, port of loading, and consignee details must match IPAFFS/FDA pre-notification exactly.',
+     state:'Awaiting shipping line release'},
+    {name:'Certificate of Origin',
+     note:`Certified by ${originLabel} chamber of commerce or competent authority. Required for tariff preference claims and import duty calculation.`,
+     state:'Awaiting supplier upload'},
   ];
-  if(cold){
-    docs.push({name:'Cold-chain evidence', note:'Temperature logger file and pre-loading reefer set point required.', state:'Missing'});
+
+  // ── Health / veterinary docs ──
+  if(meat){
+    docs.push(
+      {name:'Export Health Certificate (EHC)',
+       note:`Official veterinary EHC issued by ${originLabel} competent authority. Template must match current APHA/USDA format. OV countersignature required.`,
+       state:'Awaiting supplier upload'},
+      {name:'MAPA / Competent Authority Attestation',
+       note:`${originLabel} slaughter establishment number and export approval reference. VeriPura validates against live MAPA / USDA FSIS registry.`,
+       state:'Registry validation pending'},
+      {name:'Ante/Post-Mortem Inspection Certificate',
+       note:'Official veterinary inspection certificate from approved slaughter plant. Must cover all lots in this consignment.',
+       state:'Missing'},
+      {name:'SISBOV / Traceability Certificate',
+       note:'Individual animal traceability from farm to slaughter. Required for full chain-of-custody compliance on beef primals.',
+       state:'Awaiting supplier upload'}
+    );
+  } else if(seafood){
+    docs.push(
+      {name:'Catch Certificate / Aquaculture Declaration',
+       note:'Catch certificate (wild) or aquaculture declaration (farmed). Species, FAO zone, and vessel flag state must be declared.',
+       state:'Awaiting supplier upload'},
+      {name:'Health Certificate — Fishery Products',
+       note:`Official health certificate for fishery products issued by ${originLabel} competent authority. Must state product is fit for human consumption.`,
+       state:'Awaiting supplier upload'},
+      {name:'USDC / HACCP Processing Certificate',
+       note:'US Department of Commerce seafood inspection certificate or HACCP plan reference required for US-bound seafood consignments.',
+       state:'Missing'}
+    );
+  } else if(produce){
+    docs.push(
+      {name:'Phytosanitary Certificate',
+       note:`Issued by ${originLabel} national plant protection organisation (NPPO). Confirms consignment is free from pests and diseases listed under ISPM 12.`,
+       state:'Awaiting supplier upload'},
+      {name:'Pesticide Residue Test Results',
+       note:'Laboratory results for MRL (maximum residue level) compliance. Must cover active substances listed in the import country schedule.',
+       state:'Lab results pending'}
+    );
   } else {
-    docs.push({name:'Importer declaration', note:'Standard importer-side declaration required before release.', state:'Pending'});
+    docs.push(
+      {name:'Food Safety Certificate / CoA',
+       note:'Certificate of analysis confirming product specification, contaminant limits, and compliance with destination country food safety standards.',
+       state:'Awaiting supplier upload'}
+    );
   }
+
+  // ── Cold-chain ──
+  if(cold){
+    docs.push(
+      {name:'Cold-Chain Evidence / Temperature Log',
+       note:'Pre-loading reefer set-point confirmation and continuous temperature logger file. Any exceedance above the agreed threshold triggers automatic VeriPura hold.',
+       state:'Missing'},
+      {name:'Reefer Container Pre-Trip Inspection (PTI)',
+       note:'Container equipment pre-trip inspection report. Required before stuffing. Confirms unit is capable of maintaining target temperature for voyage duration.',
+       state:'Pending supplier confirmation'}
+    );
+  }
+
+  // ── Regulatory pre-notifications ──
+  if(meat || seafood){
+    docs.push(
+      {name:'IPAFFS Pre-Notification (UK) / FDA Prior Notice (US)',
+       note:'Regulatory pre-arrival notification filed in IPAFFS (UK) or FDA PNSI system (US). VeriPura auto-detects vessel ETA changes and updates notification.',
+       state:'Filed — monitoring for ETA deviation'}
+    );
+  } else {
+    docs.push(
+      {name:'Import Pre-Notification',
+       note:'Port Health Authority or FDA pre-arrival notification. Must be filed no later than 24 hours before vessel arrival at port of discharge.',
+       state:'Pending importer filing'}
+    );
+  }
+
+  // ── Organic / specialist ──
+  if(organic){
+    docs.push(
+      {name:'Organic Certification (COFS / NOP)',
+       note:'Certificate of organic farming status issued by approved certifying body. Required for organic labelling claims at point of sale.',
+       state:'Awaiting certification body upload'}
+    );
+  }
+
+  // ── US-specific ──
+  if(meat){
+    docs.push(
+      {name:'USDA FSIS Import Inspection Clearance',
+       note:'USDA Food Safety and Inspection Service import reinspection at US port of entry. Shipment held until physical and documentary reinspection is passed.',
+       state:'Pending port-of-entry inspection'}
+    );
+  }
+
+  // ── Universal closing docs ──
+  docs.push(
+    {name:'Customs Entry / Import Declaration',
+     note:'Customs import entry lodged with HMRC (UK), EU customs authority, or CBP (US). Tariff classification and duty payment confirmation required for release.',
+     state:'Pending broker instruction'},
+    {name:'VeriPura Compliance Verdict',
+     note:'Final go/no-go compliance decision issued by VeriPura Verdict agent after all 9 guardian agents have completed their checks. Notarized on blockchain.',
+     state:'Awaiting full agent-chain completion'}
+  );
+
   return docs;
 }
 function refreshPoDocPreview(){
@@ -2006,6 +2167,8 @@ function refreshPoDocPreview(){
   const list = document.getElementById('po-doc-list');
   if(!list) return;
   list.innerHTML = getPoRequirements(origin, commodity).map((doc, idx)=>`<div class="workflow-doc-preview-item" ${idx===0 ? 'id="po-doc-preview-first"' : ''}><div><strong>${doc.name}</strong><small>${doc.note}</small></div><div class="workflow-doc-state">${doc.state || 'Required'}</div></div>`).join('');
+  const modal = document.getElementById('po-modal');
+  if(modal) modal.scrollTop = 0;
 }
 function populatePoCustomerOptions(defaultCustomerId){
   const sel = document.getElementById('po-customer');
@@ -2135,31 +2298,27 @@ const TOURS = {
   freightForwarder: {
     label:'Freight Forwarder Tour',
     steps:[
-      {target:'#tour-launcher-ff', title:'Freight forwarder workflow', body:'This tour follows the operating arc for a freight forwarder: onboard a customer, launch the first PO, check required documents, review milestones, and end on Monitor Shipment.'},
-      {target:'#onboard-customer-trigger', title:'Begin customer onboarding', body:'Start from customer onboarding. This is where the importer account, contact, and lane assumptions are created before the first transaction arrives.', onEnter(){ switchMode('customers'); openOnboardingModal(); }},
-      {target:'#onboarding-modal', title:'Complete the importer profile', body:'The onboarding modal captures the importer identity, port, product focus, escalation rule, and first-lane operating notes so the account is ready for execution.'},
-      {target:'#onboarding-save', title:'Save the new customer', body:'Saving the profile adds the importer to the managed-customer board and immediately opens their account view for the first transaction.', onEnter(){ openOnboardingModal(); }, onNext(){ saveOnboardingDemo(); }},
-      {target:'#tour-customer-card', title:'Customer is now in the board', body:'The new importer is now part of the managed portfolio. From here the forwarder can open the account and start the first PO workflow.', onEnter(){ closeOnboardingModal(); switchMode('customers'); selectedCustomer = demoCustomerId; syncCustomerUi(); renderCustomerCards(); renderTable(); updateMapVisibility(); expandTable(); }},
-      {target:'#customer-upload-po-btn', title:'Launch the first PO', body:'From the customer profile, start the first shipment by uploading the purchase order and creating the intake record.', onEnter(){ openCustomerDetail(demoCustomerId); }},
-      {target:'#po-modal', title:'Capture the first PO', body:'The PO intake modal records the commodity, origin, weight, vessel, and ETA while pre-building the importer document checklist.', onEnter(){ closeCustomerDetail(); openPoModal(demoCustomerId); }},
-      {target:'#required-docs-queue', title:'Check required documents', body:'Once the PO is created, the shipment detail opens with the importer action dashboard. This is where missing or pending documents are surfaced for action.', onEnter(){ if(!latestDemoShipmentId) saveDemoPO(); else { closePoModal(); openShipmentByStatus('latestDemo', demoCustomerId); } }, delay:320},
-      {target:'#dd-tab-stages', title:'Review milestones', body:'The stage view shows exactly where the shipment is in the control flow, which milestone is active, and where the hold or delay sits.', onEnter(){ if(activeShipId!==latestDemoShipmentId) openShipmentByStatus('latestDemo', demoCustomerId); switchTab('stages', document.getElementById('dd-tab-stages')); }, delay:260},
-      {target:'#table-collapse-btn', title:'Monitor Shipment', body:'This is the operating endpoint for the freight forwarder: the customer is onboarded, the first PO is live, the required docs are known, and the shipment can now be monitored across the dashboard.', onEnter(){ switchTab('timeline', document.getElementById('dd-tab-timeline')); }}
+      {target:'#tour-launcher-ff', title:'Freight forwarder workflow', body:'This tour covers the full operating arc: onboard a new importer in one step, open the customer dashboard, launch the first PO, then explore VeriPura compliance validation — the required-document queue, the agent audit trail, and the milestone stage view.'},
+      {target:'#onboard-customer-trigger', title:'Step 1 — Onboard the importer', body:'The onboarding form captures company name, port, product focus, contact, and lane notes. Saving it in one action creates the customer card, builds the profile, and opens the account ready for the first transaction.', onEnter(){ switchMode('customers'); openOnboardingModal(); }, onNext(){ saveOnboardingDemo(); }},
+      {target:'#tour-customer-card', title:'Customer dashboard is live', body:'The new importer appears immediately in the managed-portfolio board. The four metric cells show active shipments, items needing action, critical holds, and arrivals within 7 days — each updating in real time as VeriPura processes events.', onEnter(){ closeOnboardingModal(); switchMode('customers'); selectedCustomer = demoCustomerId; syncCustomerUi(); renderCustomerCards(); renderTable(); updateMapVisibility(); expandTable(); }},
+      {target:'#po-modal', title:'Launch the first PO', body:'Uploading the purchase order creates the shipment intake record and immediately pre-builds the required document checklist. The importer can see exactly which documents are needed before any vessel has sailed.', onEnter(){ openCustomerDetail(demoCustomerId); setTimeout(()=>{ closeCustomerDetail(); openPoModal(demoCustomerId); }, 180); }},
+      {target:'#required-docs-queue', title:'Required-document queue — importer workbench', body:'This is where VeriPura surfaces every compliance gap. Each document shows its issue, status, and four importer actions: view the issue, upload a replacement, acknowledge, or escalate. Nothing leaves the port without clearing this queue.', onEnter(){ if(!latestDemoShipmentId) saveDemoPO(); else { closePoModal(); openShipmentByStatus('latestDemo', demoCustomerId); } }, delay:320},
+      {target:'#drilldown', title:'Audit timeline — VeriPura agent chain', body:'Every compliance event is recorded here by the agent that generated it: Intake, Mapping, Parse, Trace, Comply, Shield, Auditor, Verdict, and Ledger. Each passed check is notarized on blockchain — tamper-evident and permanently accessible to the importer.', onEnter(){ const ship = openShipmentByStatus('red') || openShipmentByStatus('amber'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:280},
+      {target:'#dd-tab-stages', title:'Stage detail — where the hold sits', body:'The 10-stage compliance workflow shows exactly which milestone is active, which are complete, and where a block or delay has occurred. The importer can see at a glance whether the hold is at Vet Inspection, Port of Exit, Customs, or Goods-In.', onEnter(){ if(activeShipId) switchTab('stages', document.getElementById('dd-tab-stages')); }, delay:220},
+      {target:'#table-collapse-btn', title:'Full portfolio monitor', body:'Collapsing back to the shipment table gives the freight forwarder the complete cross-customer view — all 11 importers, all corridors, filterable by status, origin, and customer. This is the operating endpoint for the day-to-day control tower.', onEnter(){ switchTab('timeline', document.getElementById('dd-tab-timeline')); }}
     ]
   },
   importer: {
     label:'Importer Tour',
     steps:[
-      {target:'#tour-launcher-importer', title:'Importer workflow', body:'This tour starts where the importer starts: upload a PO, check required documents, and then review other shipments in different states of completion.'},
-      {target:'#upload-po-trigger', title:'Start with the purchase order', body:'The importer’s first task is to upload the purchase order. That creates the intake record and triggers the document requirements.', onEnter(){ switchMode('customers'); if(!CUSTOMERS.find(c=>c.id===demoCustomerId)) ensureCustomerExists({id:demoCustomerId,name:'Atlas Peak Imports',region:'United Kingdom',destination:[51.95,1.31],port:'Felixstowe',focus:'Chilled proteins'}); openPoModal(demoCustomerId); }, delay:260},
-      {target:'#po-modal', title:'Review extracted shipment details', body:'This screen captures the transaction basics that drive compliance: importer, origin, commodity, weight, vessel, ETA, and PO notes.'},
-      {target:'#po-doc-preview', title:'See the required documents immediately', body:'Before the shipment is even created, the importer can already see the document package that will be required for release.', onEnter(){ openPoModal(demoCustomerId); }, delay:220},
-      {target:'#required-docs-queue', title:'Check missing vs received documents', body:'After the PO is created, the required-documents queue becomes the importer workbench for replacements, acknowledgements, and escalation decisions.', onEnter(){ if(!latestDemoShipmentId) saveDemoPO(); else { closePoModal(); openShipmentByStatus('latestDemo', demoCustomerId); } }, delay:320},
-      {target:'#drilldown', title:'Open an active shipment', body:'Next, compare that pending intake with a shipment that is already moving cleanly through the workflow.', onEnter(){ const ship = openShipmentByStatus('green'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:280},
-      {target:'#drilldown', title:'Inspect the active shipment', body:'This shipment is in progress and largely on track. The importer can review the timeline and stage status without any current hold.', onEnter(){ const ship = openShipmentByStatus('green'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:240},
-      {target:'#drilldown', title:'Check an attention shipment', body:'Now switch to a shipment that still needs importer action. This is where missing acknowledgements and document replacements tend to surface.', onEnter(){ const ship = openShipmentByStatus('amber'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:280},
-      {target:'#drilldown', title:'Review a critical or held shipment', body:'Finally, inspect the severe case. Critical shipments show the importer where intervention is urgent and why the release is blocked.', onEnter(){ const ship = openShipmentByStatus('red'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:280},
-      {target:'#ship-table', title:'Monitor all shipments by status', body:'The importer ends in the shipment table, where all open consignments can be reviewed by search, status, stage, and ETA across the portfolio.', onEnter(){ closePanel(); activeFilter='all'; sumCardClick('all'); expandTable(); }, delay:220}
+      {target:'#tour-launcher-importer', title:'Importer workflow', body:'This tour follows the importer arc: create a shipment from a PO, review the full required-document checklist, inspect the VeriPura compliance timeline on a live shipment, then examine what a critical hold looks like and how to act on it.'},
+      {target:'#po-modal', title:'Upload the purchase order', body:'The importer uploads their PO here. Origin, commodity, vessel, and ETA are captured. VeriPura immediately determines which documents are required — before the shipment is even created.', onEnter(){ switchMode('customers'); if(!CUSTOMERS.find(c=>c.id===demoCustomerId)) ensureCustomerExists({id:demoCustomerId,name:'Atlas Peak Imports',region:'United Kingdom',destination:[51.95,1.31],port:'Felixstowe',focus:'Chilled proteins'}); openPoModal(demoCustomerId); }, delay:260},
+      {target:'#po-doc-preview', title:'Required documents — pre-built instantly', body:'Before submission, the importer sees the complete document package: EHC, Bill of Lading, Certificate of Origin, cold-chain evidence, IPAFFS pre-notification, and more — all determined by origin and commodity type.', onEnter(){ openPoModal(demoCustomerId); setTimeout(()=>{ const m=document.getElementById('po-modal'); if(m) m.scrollTop=0; },260); }, delay:260},
+      {target:'#required-docs-queue', title:'Document checklist — the compliance workbench', body:'After the PO is created, every required document is listed with its current status, the specific issue flagged by VeriPura, and four importer actions: view issue, upload replacement, acknowledge, or escalate. Nothing clears customs without this queue being resolved.', onEnter(){ if(!latestDemoShipmentId) saveDemoPO(); else { closePoModal(); openShipmentByStatus('latestDemo', demoCustomerId); } }, delay:380},
+      {target:'#required-docs-queue', title:'Green shipment — all documents validated', body:'On a clean shipment every document shows a green ✓ Validated status. VeriPura has run all 9 guardian agents and the Verdict agent has issued a go. The Ledger agent notarizes this on blockchain — immutable and auditable.', onEnter(){ closePoModal(); const ship = openShipmentByStatus('green'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:320},
+      {target:'#required-docs-queue', title:'Amber shipment — items need importer action', body:'On an attention shipment one or more documents are incomplete or mismatched. The importer must upload replacements or acknowledge issues before VeriPura can re-run the Comply and Verdict agents and clear the hold.', onEnter(){ const ship = openShipmentByStatus('amber'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:300},
+      {target:'#drilldown', title:'Critical hold — VeriPura audit trail', body:'On a critical shipment the audit timeline shows exactly which agent raised the flag — Shield (fraud/forgery), Comply (regulatory mismatch), or Trace (actor verification failure) — with timestamp, detail, and the blockchain-anchored credential for every prior passing check.', onEnter(){ const ship = openShipmentByStatus('red'); if(ship) switchTab('timeline', document.getElementById('dd-tab-timeline')); }, delay:280},
+      {target:'#ship-table', title:'Full portfolio — all shipments, all corridors', body:'The shipment table gives the importer a live view across every open consignment: status, stage, ETA, and VeriPura action. Filter by On Track, Attention, or Critical to prioritise where intervention is needed today.', onEnter(){ closePanel(); activeFilter='all'; sumCardClick('all'); expandTable(); }, delay:220}
     ]
   }
 };
@@ -2170,54 +2329,20 @@ function getFocusableElements(container){
 function positionTourUi(target){
   const spotlight = document.getElementById('tour-spotlight');
   const card = document.getElementById('tour-card');
-  const margin = 14;
-  const headerOffset = 74;
-  const targetRect = target?.getBoundingClientRect?.();
-  if(targetRect && targetRect.width>0 && targetRect.height>0){
-    spotlight.style.top = `${Math.max(headerOffset, targetRect.top - 8)}px`;
-    spotlight.style.left = `${Math.max(8, targetRect.left - 8)}px`;
-    spotlight.style.width = `${Math.max(24, targetRect.width + 16)}px`;
-    spotlight.style.height = `${Math.max(24, targetRect.height + 16)}px`;
+  const H=74, vh=window.innerHeight;
+  const ch=card.offsetHeight>50?card.offsetHeight:330;
+  const r=target?.getBoundingClientRect?.();
+  // Spotlight the target element
+  if(r && r.width>0 && r.height>0){
+    spotlight.style.top=`${Math.max(H,r.top-8)}px`;
+    spotlight.style.left=`${Math.max(8,r.left-8)}px`;
+    spotlight.style.width=`${Math.max(24,r.width+16)}px`;
+    spotlight.style.height=`${Math.max(24,r.height+16)}px`;
     spotlight.classList.add('open');
-
-    const cardWidth = Math.min(card.offsetWidth || 380, window.innerWidth - 24);
-    const cardHeight = Math.min(card.offsetHeight || 320, window.innerHeight - headerOffset - 20);
-    const preferLeft = targetRect.right > window.innerWidth * 0.56;
-    const leftSpace = targetRect.left - margin;
-    const rightSpace = window.innerWidth - targetRect.right - margin;
-
-    let left;
-    if(preferLeft && leftSpace >= cardWidth){
-      left = targetRect.left - cardWidth - 18;
-    } else if(rightSpace >= cardWidth){
-      left = targetRect.right + 18;
-    } else if(leftSpace >= cardWidth){
-      left = targetRect.left - cardWidth - 18;
-    } else {
-      left = Math.max(12, Math.min(window.innerWidth - cardWidth - 12, targetRect.left));
-    }
-
-    let top = targetRect.top;
-    if(top + cardHeight > window.innerHeight - 12) top = window.innerHeight - cardHeight - 12;
-    if(top < headerOffset) top = headerOffset;
-
-    const targetCenterX = targetRect.left + (targetRect.width / 2);
-    if(target.matches?.('#drilldown, #required-docs-queue, #dd-tab-stages, #dd-tab-timeline') || target.closest?.('#drilldown')){
-      left = 18;
-      top = Math.max(headerOffset, Math.min(window.innerHeight - cardHeight - 12, headerOffset + 18));
-    } else if(target.matches?.('.workflow-modal, #po-modal, #onboarding-modal') || target.closest?.('.workflow-modal')){
-      left = Math.max(12, Math.min(window.innerWidth - cardWidth - 12, targetCenterX - (cardWidth / 2)));
-      top = Math.max(headerOffset, Math.min(window.innerHeight - cardHeight - 12, targetRect.bottom + 16));
-      if(top + cardHeight > window.innerHeight - 12) top = Math.max(headerOffset, targetRect.top - cardHeight - 14);
-    }
-
-    card.style.top = `${top}px`;
-    card.style.left = `${left}px`;
-  } else {
-    spotlight.classList.remove('open');
-    card.style.top = `${Math.max(headerOffset, (window.innerHeight - card.offsetHeight) / 2)}px`;
-    card.style.left = `${Math.max(12, (window.innerWidth - card.offsetWidth) / 2)}px`;
-  }
+  } else { spotlight.classList.remove('open'); }
+  // Card always anchored to far left, vertically centred
+  card.style.left='18px';
+  card.style.top=`${Math.max(H+10, Math.min(vh-ch-18, (vh-ch)/2))}px`;
 }
 function renderTourStep(){
   const step = tourState.steps[tourState.index];
@@ -2261,6 +2386,19 @@ function stopTour(silent){
   }
   tourState.previousFocus?.focus?.();
   tourState = { name:null, index:0, steps:[], previousFocus:null };
+  // Return to full dashboard
+  closePanel();
+  closePoModal();
+  closeOnboardingModal();
+  closeCustomerDetail();
+  selectedCustomer = '';
+  viewMode = 'dashboard';
+  activeFilter = 'all';
+  syncCustomerUi();
+  renderCustomerCards();
+  renderTable();
+  updateMapVisibility();
+  collapseTable();
 }
 function nextTourStep(){
   const step = tourState.steps[tourState.index];
